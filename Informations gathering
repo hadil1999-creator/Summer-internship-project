@@ -1,0 +1,70 @@
+Python, tesserract, openCV
+OCR as a process generally consists of several sub-processes to perform as accurately as possible. The subprocesses are:
+•	Preprocessing of the Image
+•	Text Localization
+•	Character Segmentation
+•	Character Recognition
+•	Post Processing
+Tesseract - an open-source OCR engine that has gained popularity among OCR developers.
+-------------------------
+Before we jump to how part, Let us discuss the negative consequence of choosing the wrong size. After we pick a fixed width and height, 
+the standard procedure is to resize all the images to this fixed size. So, now every image falls into one of the two buckets.
+•	Downscaling: Bigger images will be down scaled, this makes it harder for CNN to learn the features required for classification or detection as the number of pixels 
+where the vital feature will be present is significantly reduced.
+•	Upscaling: When small images are upscaled and padded with zero, then NN has to learn that the padded portion has no impact on classification. 
+Larger images are also slower to train and might require more VRAM.
+So we have to pick our poison, the closer to optimal image size we are, the better it is.
+How is OCR different from a scanner? A scanner merely copies the paper as an image file, so you cannot copy and paste from the document. OCR translates a document 
+into an editable format.
+Guess what? You can definitely perform OCR with Python and just a bunch of lines of code!
+We’re going to use the EasyOCR package.
+---------------------
+Stopwords are less informative regarding the given task.
+Usually, the stopwords are primarily conjunctions, prepositions, pronouns, demonstratives, and so on.
+In the natural language processing literature, lists of stopwords are commonly used for several tasks, including NER tasks.
+--
+Lexical markers, also known as lexical triggers, are words or parts of a word that usually exist
+in the vicinity of the named entity and can help to recognize an entity
+Named entity recognition (NER) is a prominent subfield of natural language processing (NLP). 
+The objective of NER is to recognize specific and predefined entities in a text 
+--
+The content of KAAHE dataset was originally provided by UK National Health Services (NHS). The data consist of 27 Arabic medical articles, totaling around 50,000 words. 
+the data were imported into the AMIRA tool [14] to be tokenized.
+----
+Data annotation is the process of tagging the data into predefined categories. 
+It is an important process, especially for supervised learning, and can be done for different types of datasets, such as image, video, and textual datasets.
+Data annotation plays a crucial role in evaluating the performance of supervised models because they provide ground-truth target labels.  
+----
+The NCBI Disease corpus consists of 793 PubMed abstracts, which are separated into training (593), development (100) and test (100) subsets. 
+The NCBI Disease corpus is annotated with disease mentions, using concept identifiers from either MeSH or OMIM: Corpus Annotation
+•	Fourteen annotators
+•	Two-annotators per document (randomly paired)
+•	Three annotation phases
+•	Checked for corpus-wide consistency of annotations
+---
+Stemming is the process of reducing a word to its word stem that affixes to suffixes and prefixes or to the roots of words known as a lemma. 
+Stemming is important in natural language understanding (NLU) and natural language processing (NLP). 
+-------------
+Lemmatization usually refers to doing things properly with the use of a vocabulary and morphological analysis of words, 
+normally aiming to remove inflectional endings only and to return the base or dictionary form of a word, which is known as the lemma(playing,playerplay)
+
+-------
+NLP//
+Specific tasks for NLP systems may include:
+•	Summarizing lengthy blocks of narrative text, such as a clinical note or academic journal article, by identifying key concepts or phrases present in the source material
+•	Mapping data elements present in unstructured text to structured fields in an electronic health record in order to improve clinical data integrity
+•	Converting data in the other direction from machine-readable formats into natural language for reporting and educational purposes
+•	Answering unique free-text queries that require the synthesis of multiple data sources
+•	Engaging in optical character recognition to turn images, like PDF documents or scans of care summaries and imaging reports, into text files that can then be parsed and analyzed
+•	Conducting speech recognition to allow users to dictate clinical notes or other information that can then be turned into text
+
+--------
+NLP tool kits specialized for processing biomedical and clinical text, such as MetaMap and cTAKES typically do not make use of new research innovations
+such as word representations or neural networks discussed above, hence producing less accurate results.
+
+--------------
+The journey of any NLP task in healthcare analytics usually goes as follows:
+•	extracting the useful information from unstructured EHR (electronic health records)
+•	mapping the clinical facts into a common format (e.g. FHIR, HL7, OMOP),
+•	building a temporal sequencing (putting clinical facts on a timeline)
+•	Using all the bits and bolts for the later downstream tasks.
